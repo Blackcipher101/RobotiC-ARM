@@ -1,0 +1,135 @@
+<robot name="mrm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+    <xacro:include filename="$(find arm_descrption)/urdf/macros.xacro" />
+
+
+
+    <link name="base_link">
+        <inertial>
+        <mass value="6"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <inertia ixx="0.0395416666667" ixy="0" ixz="0" iyy="0.106208333333" iyz="0" izz="0.106208333333"/>
+        </inertial>
+        <!-- body -->
+        <collision name="collision_chassis">
+        <geometry>
+            <box size="3 3 0.5"/>
+        </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="3 3 0.5"/>
+            </geometry>
+        </visual>
+    </link>
+    
+    <joint name="base_link__link_01" type="revolute">
+        <axis xyz="0 0 1" />
+        <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5" />
+        <origin rpy="0 0 0" xyz="0 0 0.5"/>
+        <parent link="base_link"/>
+        <child link="base_rotation"/>
+    </joint>
+
+    <transmission name="trans_2">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="base_link__link_01">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_base">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+    <link name="base_rotation">
+         <inertial>
+            <origin xyz="0 0 0.2" rpy="0 0 0" />
+            <mass value="1" />
+            <xacro:cylinder_inertia mass="1" r="0.5" l="0.4" />
+        </inertial>
+         <collision>
+            <origin xyz="0 0 0.2" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.5" length="0.4"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0.2"/>
+            <geometry>
+                <cylinder radius="0.5" length="0.4"/>
+            </geometry>
+        </visual>
+    </link>
+    <transmission name="trans_1">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint_1">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_b1">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+    <joint
+    name="joint_1"
+    type="revolute">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5" />
+    <parent link="base_rotation" />
+    <child link="first_link" /></joint>
+    <xacro:joint_hand name="joint_2" child="second_link" parent="first_link" origin_xyz="0 0 3" />
+    <transmission name="trans_2">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint_2">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_b2">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+    <link name="first_link">
+        <inertial>
+        <mass value="1"/>
+        <origin rpy="0 0 0" xyz="-0.53 0 1"/>
+        <inertia ixx="0.0395416666667" ixy="0" ixz="0" iyy="0.106208333333" iyz="0" izz="0.106208333333"/>
+        </inertial>
+        <!-- body -->
+        <collision name="collision_chassis">
+        <geometry>
+            <box size="1 1 1"/>
+        </geometry>
+        </collision>
+        <visual>
+        <origin rpy="0 0 0" xyz="-0.53 0 1"/>
+        <geometry>
+            <mesh filename="package://arm_descrption/meshes/arm_01.stl"/>
+        </geometry>
+        </visual>
+    </link>
+    <link name="second_link">
+    <inertial>
+        <mass value="1"/>
+        <origin rpy="0 0 0" xyz="-0.53 0 1"/>
+        <inertia ixx="0.0395416666667" ixy="0" ixz="0" iyy="0.106208333333" iyz="0" izz="0.106208333333"/>
+        </inertial>
+        <!-- body -->
+        <collision name="collision_chassis">
+        <geometry>
+            <box size="1 1 1"/>
+        </geometry>
+        </collision>
+        <visual>
+        <origin rpy="0 0 0" xyz="-0.53 0 1"/>
+        <geometry>
+            <mesh filename="package://arm_descrption/meshes/arm02.stl" scale="0.5 0.5 0.5"/>
+        </geometry>
+        </visual>
+    </link>
+     <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    </plugin>
+  </gazebo>
+</robot> 

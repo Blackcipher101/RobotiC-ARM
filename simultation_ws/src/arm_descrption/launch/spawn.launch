@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <group ns="/arm">
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find arm_descrption)/urdf/arm.xacro'" />
+    
+    <arg name="x" default="0"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0.5"/>
+    
+    <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-urdf -param robot_description -model m2wr -x $(arg x) -y $(arg y) -z $(arg z)" />
+    </group>
+
+    <!-- Load controllers -->
+    <rosparam command="load" file="$(find arm_descrption)/config/joints.yaml" ns="/arm"/>
+    
+    <!-- Controllers -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        respawn="false" output="screen" ns="/arm"
+        args="--namespace=/arm joint_state_controller joint1_position_controller joint2_position_controller joint3_position_controller --timeout 60">
+    </node>
+</launch>

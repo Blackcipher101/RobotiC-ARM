@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+    <xacro:macro name="joint_hand" params="name parent child origin_xyz">
+      <joint name="${name}" type="revolute">
+        <origin rpy="0 0 0" xyz="${origin_xyz}"/>
+        <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5" />
+        <child link="${child}"/>
+        <parent link="${parent}"/>
+      </joint>
+    </xacro:macro>
+
+    <xacro:macro name="cylinder_inertia" params="mass r l">
+      <inertia  ixx="${mass*(3*r*r+l*l)/12}" ixy = "0" ixz = "0"
+                iyy="${mass*(3*r*r+l*l)/12}" iyz = "0"
+                izz="${mass*(r*r)/2}" />
+    </xacro:macro>
+</robot>
