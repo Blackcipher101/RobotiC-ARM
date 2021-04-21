@@ -7,9 +7,9 @@
 
     <link name="base_link">
         <inertial>
-        <mass value="6"/>
+        <mass value="10000"/>
         <origin rpy="0 0 0" xyz="0 0 0"/>
-        <inertia ixx="0.0395416666667" ixy="0" ixz="0" iyy="0.106208333333" iyz="0" izz="0.106208333333"/>
+        <inertia ixx="7708" ixy="0" ixz="0" iyy="7708" iyz="0" izz="15000"/>
         </inertial>
         <!-- body -->
         <collision name="collision_chassis">
