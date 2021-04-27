@@ -9,6 +9,8 @@ project(arm_move)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   rospy
+  tf2
+  tf2_ros
   std_msgs
 )
 

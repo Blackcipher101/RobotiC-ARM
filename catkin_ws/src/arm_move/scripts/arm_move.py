@@ -3,16 +3,16 @@ import rospy
 from std_msgs.msg import Float64
 
 def talker():
-    pub = rospy.Publisher('/arm/joint3_position_controller/command', Float64, queue_size=10)
+    pub = rospy.Publisher('/arm/joint1_position_controller/command', Float64, queue_size=10)
     rospy.init_node('talker', anonymous=True)
-    rate = rospy.Rate(0.25) # 10hz
+    rate = rospy.Rate(1) # 10hz
     msg = Float64()
     msg.data= 2.0
     while not rospy.is_shutdown():
         rospy.loginfo(msg)
         pub.publish(msg)
         rate.sleep()
-        msg.data+=0.1
+        #msg.data+=0.1
     #rospy.spin()
 if __name__ == "__main__":
     

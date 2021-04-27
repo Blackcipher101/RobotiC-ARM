@@ -128,6 +128,30 @@
         </geometry>
         </visual>
     </link>
+    <link name="third_link">
+    <inertial>
+        <mass value="1"/>
+        <origin rpy="0 0 0" xyz="-0.53 0 1"/>
+        <inertia ixx="0.0395416666667" ixy="0" ixz="0" iyy="0.106208333333" iyz="0" izz="0.106208333333"/>
+        </inertial>
+        <!-- body -->
+        <collision name="collision_chassis">
+        <geometry>
+            <box size="0.25 0.25 0.25"/>
+        </geometry>
+        </collision>
+        <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+            <box size="0.25 0.25 0.25"/>
+        </geometry>
+        </visual>
+    </link>
+    <joint name="end" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 2.5"/>
+        <parent link="second_link"/>
+        <child link="third_link"/>
+    </joint>
      <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
     </plugin>
