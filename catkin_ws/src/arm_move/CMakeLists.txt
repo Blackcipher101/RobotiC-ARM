@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf2
   tf2_ros
   std_msgs
+  math
 )
 
 ## System dependencies are found with CMake's conventions
