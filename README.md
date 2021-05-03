@@ -3,6 +3,51 @@ Ever seen arms in huge plants:factory:? Yes this is something like that which we
 its a 3DOF robot which basically means it has three joints which can move independently of each other something similar to human arm a revolute joint followed by a continous joint and another continous joint.
 
 
-# Comparsison
+# Comparsison :vs:
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Extended_arm.jpg">
+<img src="https://i.ibb.co/Pjccf62/download-1.jpg">
+
+
+# What does this arm do
+So with this arm you can pick objects manually using a GUI other than that it uses forward :arrow_right: kinematics to print the end effector coordinates and using inverse kinematics :arrow_left: you can give a coordinate and the arm will align itself to that coordinate giving itself the desired joint values. This is a brief feature list the complete list of nodes is below
+
+# Nodes
+- tf
+- joint_states
+- joint_command
+- forward kinematics
+- inverse kinematics
+
+# Tech and Tools ⚙️
+The whole thing uses ROS Melodic which makes it really ease to builds nodes and communicate between the nodes. It has both rviz for static simltation and gazebo for dynamic physics sloutions you will see a use of ros-control to command the joints in gazebo
+
+# Working
+
+
+
+
+
+# How to run 🏃
+
+Clone the repo
+```
+git clone <link>
+```
+Run ```catkin_make``` in both simulataion and catkin workspace
+Then source the workspace
+```
+source devel/setup.bash
+```
+After this its just lauching the bot and the running the nodes
+In simultation_ws
+```
+roslaunch gazebo_ros empty_world.launch
+roslaunch arm_description spawn.launch
+```
+In catkin_ws
+```
+rosrun arm_move arm_move.py
+```
+
+# Contribution 👼
+Feel free to make issues and contribute
