@@ -6,7 +6,7 @@ it's a 3DOF robot which basically means it has three joints that can move indepe
 # Comparsison :vs:
 
 
-![]("https://i.ibb.co/Pjccf62/download-1.jpg)
+![](https://i.ibb.co/pnXSK5z/download-1.jpg) &nbsp;&nbsp;&nbsp;  <img src="https://i.ibb.co/Y8PfvwB/Screenshot-2021-05-04-22-00-32.png" height="260px">
 
 
 # What does this arm do
