@@ -24,6 +24,16 @@ The whole thing uses ROS Melodic which makes it really ease to builds nodes and 
 
 # Working
 
+## Forward Kinematics
+
+https://user-images.githubusercontent.com/33775493/117039182-1b1a4100-ad26-11eb-9716-c5116b786dc8.mp4
+
+## Inverse Kinematics
+
+https://user-images.githubusercontent.com/33775493/117039426-646a9080-ad26-11eb-94b2-2bc8f2e0e9d8.mp4
+
+
+
 
 
 
